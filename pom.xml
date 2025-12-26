@@ -27,7 +27,7 @@
 
   <groupId>org.apache.avro</groupId>
   <artifactId>avro-toplevel</artifactId>
-  <version>1.12.0</version>
+  <version>1.12.0-AVRO-3106</version>
   <packaging>pom</packaging>
 
   <name>Apache Avro Toplevel</name>
@@ -66,7 +66,7 @@
     <maven-surefire-plugin.version>3.3.1</maven-surefire-plugin.version>
 
     <!-- Pin output timestamp to make the Java build reproducible -->
-    <project.build.outputTimestamp>1721935492</project.build.outputTimestamp>
+    <project.build.outputTimestamp>1759828848</project.build.outputTimestamp>
   </properties>
 
   <modules>
@@ -111,6 +111,13 @@
   </mailingLists>
 
   <build>
+    <extensions>
+      <extension>
+        <groupId>com.google.cloud.artifactregistry</groupId>
+        <artifactId>artifactregistry-maven-wagon</artifactId>
+        <version>2.2.0</version>
+      </extension>
+    </extensions>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -598,5 +605,28 @@
       </build>
     </profile>
   </profiles>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://europe-maven.pkg.dev/usp-production/usp-maven</url>
+    </snapshotRepository>
+    <repository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://europe-maven.pkg.dev/usp-production/usp-maven</url>
+    </repository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://europe-maven.pkg.dev/usp-production/usp-maven</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
 </project>
